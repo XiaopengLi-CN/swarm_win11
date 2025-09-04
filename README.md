@@ -19,7 +19,7 @@
 ├── benchmark_baselines.py    # BIPOP-CMA-ES测试脚本
 ├── benchmark_optymizer.py    # CS和DE测试脚本
 ├── simple_process.py         # 数据处理脚本
-├── Vizualization.py          # 可视化脚本
+├── dt_fb.py                  # 固定预算数据处理脚本
 ├── requirements.txt          # 项目依赖
 └── README.md                 # 项目说明
 ```
@@ -54,7 +54,7 @@
 
 3. 生成可视化：
    ```bash
-   python Vizualization.py
+   python dt_fb.py
    ```
 
 ## 依赖包
