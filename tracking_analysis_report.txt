@@ -1,0 +1,20 @@
+=== 代码跟踪分析报告 ===
+
+总调用次数: 85
+env_new中的文件数量: 1
+env_new中的函数调用次数: 9
+
+=== env_new中的文件列表 ===
+
+文件: H:\群智能算法\term paper 2025-06-11\term paper python项目复现2025年9月3日\Benchmarking\env_new\Lib\site-packages\ioh\__init__.py
+  调用次数: 9
+  函数列表:
+    - ioh.get_problem
+    - ioh.get_problem
+    - ioh.get_problem
+    - ioh.get_problem
+    - ioh.get_problem
+    - ioh.get_problem
+    - ioh.get_problem
+    - ioh.get_problem
+    - ioh.get_problem

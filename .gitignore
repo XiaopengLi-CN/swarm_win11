@@ -58,3 +58,15 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+
+# Java build files
+target/
+*.class
+
+# Analysis files (too large)
+benchmark_baselines.txt
+precise_code_analysis.txt
+code_analysis_data.json
+
+# Record directory
+Record/
