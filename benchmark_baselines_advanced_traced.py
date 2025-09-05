@@ -1,6 +1,19 @@
 import os
 os.environ["OMP_NUM_THREADS"] = "1"
 os.environ["OPENBLAS_NUM_THREADS"] = "1"
+
+# 导入高级代码执行跟踪器
+from advanced_code_tracer import start_advanced_tracing, stop_advanced_tracing
+
+# 开始高级跟踪 - 跟踪每一行代码的执行
+tracer = start_advanced_tracing(
+    log_file="benchmark_advanced_trace.log",
+    trace_lines=True,      # 跟踪每行代码
+    trace_calls=True,     # 跟踪函数调用
+    trace_returns=True,   # 跟踪函数返回
+    trace_exceptions=True # 跟踪异常
+)
+
 import ioh
 from itertools import product
 from functools import partial
@@ -24,9 +37,7 @@ DATA_FOLDER = "Data"
 MAX_THREADS = 32
 
 def runParallelFunction(runFunction, arguments):
-
-    
-
+    """并行运行函数"""
     arguments = list(arguments)
     p = Pool(min(MAX_THREADS, len(arguments)))
     results = p.map(runFunction, arguments)
@@ -39,13 +50,13 @@ modcma_params = { 'base' : {},
                   }
 }
 
-
 class Algorithm_Evaluator():
+    """算法评估器"""
+    
     def __init__(self, optimizer):
         self.alg = optimizer
 
     def __call__(self, func, n_reps):
-
         for seed in range(n_reps):
             np.random.seed(int(seed))
             
@@ -60,7 +71,7 @@ class Algorithm_Evaluator():
             func.reset()
         
 def run_optimizer(temp):
-    
+    """运行优化器"""
     algname, fid, iid, dim = temp
     print(algname, fid, iid, dim)
     
@@ -88,3 +99,6 @@ if __name__ == '__main__':
     args = product(algnames, fids, iids, dims)
 
     runParallelFunction(run_optimizer, args)
+    
+    # 停止高级跟踪并保存摘要
+    stop_advanced_tracing("benchmark_advanced_summary.json")

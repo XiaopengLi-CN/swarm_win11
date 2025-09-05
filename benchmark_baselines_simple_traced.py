@@ -1,6 +1,13 @@
 import os
 os.environ["OMP_NUM_THREADS"] = "1"
 os.environ["OPENBLAS_NUM_THREADS"] = "1"
+
+# 导入简化的代码执行跟踪器
+from simple_benchmark_tracer import start_simple_tracing, stop_simple_tracing
+
+# 开始简化跟踪 - 只跟踪项目相关代码
+tracer = start_simple_tracing("benchmark_simple_trace.log")
+
 import ioh
 from itertools import product
 from functools import partial
@@ -24,9 +31,7 @@ DATA_FOLDER = "Data"
 MAX_THREADS = 32
 
 def runParallelFunction(runFunction, arguments):
-
-    
-
+    """并行运行函数"""
     arguments = list(arguments)
     p = Pool(min(MAX_THREADS, len(arguments)))
     results = p.map(runFunction, arguments)
@@ -39,13 +44,13 @@ modcma_params = { 'base' : {},
                   }
 }
 
-
 class Algorithm_Evaluator():
+    """算法评估器"""
+    
     def __init__(self, optimizer):
         self.alg = optimizer
 
     def __call__(self, func, n_reps):
-
         for seed in range(n_reps):
             np.random.seed(int(seed))
             
@@ -60,7 +65,7 @@ class Algorithm_Evaluator():
             func.reset()
         
 def run_optimizer(temp):
-    
+    """运行优化器"""
     algname, fid, iid, dim = temp
     print(algname, fid, iid, dim)
     
@@ -88,3 +93,6 @@ if __name__ == '__main__':
     args = product(algnames, fids, iids, dims)
 
     runParallelFunction(run_optimizer, args)
+    
+    # 停止简化跟踪并保存摘要
+    stop_simple_tracing("benchmark_simple_summary.json")

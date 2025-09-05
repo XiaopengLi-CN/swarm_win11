@@ -76,7 +76,7 @@ if __name__ == '__main__':
     warnings.filterwarnings("ignore", category=RuntimeWarning) 
     warnings.filterwarnings("ignore", category=FutureWarning)
 
-    fids = range(1,2)  # 只测试F1 (Sphere)
+    fids = range(20,25)  # 只测试F1 (Sphere)
     algnames = ["CS", "DE"]
     iids = range(1,11)  # 测试I1-I10，共10个实例
     
