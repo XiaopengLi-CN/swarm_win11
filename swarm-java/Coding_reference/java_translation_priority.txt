@@ -1,0 +1,27 @@
+=== Java翻译优先级指南 ===
+
+基于文件重要性和依赖关系，建议按以下顺序进行Java翻译：
+
+【第一优先级 - 核心接口】
+1. env_new/Lib/site-packages/ioh/__init__.py (get_problem接口)
+2. env_new/Lib/site-packages/ioh/logger/analyzer.py (Analyzer类)
+3. env_new/Lib/site-packages/modcma/__init__.py (ModularCMAES接口)
+
+【第二优先级 - 算法实现】
+4. env_new/Lib/site-packages/modcma/modularcmaes.py (核心算法)
+5. env_new/Lib/site-packages/modcma/parameters.py (参数管理)
+6. env_new/Lib/site-packages/modcma/population.py (种群操作)
+7. env_new/Lib/site-packages/modcma/sampling.py (采样策略)
+
+【第三优先级 - 支持功能】
+8. env_new/Lib/site-packages/numpy/__init__.py (数值计算基础)
+9. env_new/Lib/site-packages/numpy/core/numeric.py (数值函数)
+10. env_new/Lib/site-packages/numpy/random/__init__.py (随机数)
+11. env_new/Lib/site-packages/modcma/utils.py (工具函数)
+12. env_new/Lib/site-packages/ioh/logger/__init__.py (日志入口)
+13. env_new/Lib/site-packages/numpy/core/__init__.py (核心模块)
+
+【翻译策略】
+- 先实现接口和核心算法
+- 再实现支持功能
+- 最后优化和测试
