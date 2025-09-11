@@ -1,9 +1,9 @@
 package test;
 
 import opytimizer.Opytimizer;
-import opytimizer.core.function.Function;
-import opytimizer.core.optimizer.Optimizer;
-import opytimizer.core.space.Space;
+import opytimizer.core.Function;
+import opytimizer.core.Space;
+import opytimizer.spaces.SearchSpace;
 import opytimizer.optimizers.swarm.CS;
 import opfunu.name_based.Sphere;
 
@@ -14,7 +14,7 @@ import opfunu.name_based.Sphere;
  * ```python
  * from opytimizer import Opytimizer
  * from opytimizer.core.function import Function
- * from opytimizer.core.space import Space
+ * from opytimizer.spaces import SearchSpace
  * from opytimizer.optimizers.swarm import CS
  * from opfunu.name_based import Sphere
  * 
@@ -22,7 +22,7 @@ import opfunu.name_based.Sphere;
  * f = Sphere(ndim=10)
  * 
  * # 创建搜索空间
- * space = Space(n_agents=30, n_variables=10, lower_bound=-5.12, upper_bound=5.12)
+ * space = SearchSpace(n_agents=30, n_variables=10, lower_bound=-5.12, upper_bound=5.12)
  * 
  * # 创建优化器
  * optimizer = CS()
@@ -38,10 +38,10 @@ import opfunu.name_based.Sphere;
  * print(f"Best fitness: {best_agent.fit}")
  * ```
  */
-public class PythonCompatibleTest {
+public class OpytimizerTest {
     
     public static void main(String[] args) {
-        System.out.println("=== 完全匹配Python的Java测试 ===");
+        System.out.println("=== 完全匹配Python的Opytimizer测试 ===");
         
         try {
             // 创建函数 - 完全匹配Python的调用方式
@@ -49,7 +49,7 @@ public class PythonCompatibleTest {
             System.out.println("Created function: " + f.get_name());
             
             // 创建搜索空间 - 完全匹配Python的参数
-            Space space = new Space(30, 10, -5.12, 5.12);
+            SearchSpace space = new SearchSpace(30, 10, -5.12, 5.12);
             System.out.println("Created space: " + space);
             
             // 创建优化器 - 完全匹配Python的调用方式
@@ -57,7 +57,7 @@ public class PythonCompatibleTest {
             System.out.println("Created optimizer: " + optimizer);
             
             // 创建Opytimizer - 完全匹配Python的调用方式
-            Opytimizer opt = new Opytimizer(space, optimizer, f);
+            Opytimizer opt = new Opytimizer(space, optimizer, new Function(x -> f.evaluate(x)));
             System.out.println("Created Opytimizer: " + opt);
             
             // 开始优化 - 完全匹配Python的方法调用

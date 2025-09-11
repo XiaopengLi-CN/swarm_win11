@@ -1,8 +1,8 @@
 package opytimizer;
 
-import opytimizer.core.function.Function;
-import opytimizer.core.optimizer.Optimizer;
-import opytimizer.core.space.Space;
+import opytimizer.core.Function;
+import opytimizer.core.Optimizer;
+import opytimizer.core.Space;
 import opytimizer.utils.history.History;
 import opytimizer.utils.logging.Logger;
 
@@ -15,7 +15,7 @@ import opytimizer.utils.logging.Logger;
  */
 public class Opytimizer {
     
-    private static final Logger logger = Logger.getLogger(Opytimizer.class.getName());
+    private static final Logger logger = Logger.get_logger(Opytimizer.class.getName());
     
     // 完全匹配Python的属性名
     public Space space;
