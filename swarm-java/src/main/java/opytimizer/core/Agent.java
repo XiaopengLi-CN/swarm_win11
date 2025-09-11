@@ -134,6 +134,19 @@ public class Agent {
     }
     
     /**
+     * 边界裁剪 - 完全匹配Python的clip_by_bound方法
+     */
+    public void clip_by_bound() {
+        // Iterates through all the decision variables - 完全匹配Python的逻辑
+        for (int j = 0; j < n_variables; j++) {
+            // Clips the array based on variable's lower and upper bounds - 完全匹配Python的np.clip
+            for (int d = 0; d < n_dimensions; d++) {
+                position[j][d] = Math.max(lb[j], Math.min(ub[j], position[j][d]));
+            }
+        }
+    }
+    
+    /**
      * toString方法 - 匹配Python的__str__方法
      */
     @Override
