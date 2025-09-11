@@ -65,6 +65,17 @@
                 <configuration>
                     <mainClass>com.hse.li.swarm.benchmark.Main</mainClass>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>run-data-processor</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.hse.li.swarm.dataprocess.DataProcessor</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
